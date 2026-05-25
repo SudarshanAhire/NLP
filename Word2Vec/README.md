@@ -1,24 +1,21 @@
-# Word2Vec using Game of Thrones Dataset ⚔️
+# ⚔️ Game of Thrones Word2Vec
 
-This project demonstrates the implementation of the **Word2Vec** algorithm using text data from the **Game of Thrones** book series.  
-The model learns semantic relationships between words, characters, and locations by analyzing the context in which words appear.
-
-The project also includes preprocessing, similarity analysis, vector extraction, and 3D visualization of word embeddings.
+A Natural Language Processing (NLP) project that implements the **Word2Vec** algorithm using the **Game of Thrones books dataset**.  
+This project learns semantic relationships between characters, places, and important words from the series using word embeddings.
 
 ---
 
-# 📌 Project Objective
+# 📌 Project Overview
 
-The main objective of this project is to understand how **Word Embeddings** work in Natural Language Processing (NLP).
+This project demonstrates how Word2Vec converts words into meaningful numerical vectors based on their surrounding context in text data.
 
-Using Word2Vec, the model can:
+Using the trained model, we can:
 
-- Learn relationships between words
-- Identify similar characters
-- Measure semantic similarity
+- Find similar characters or words
+- Measure similarity between characters
 - Detect unrelated words
-- Convert words into dense numerical vectors
-- Visualize embeddings in 3D space
+- Extract word embeddings
+- Visualize high-dimensional vectors in 3D space
 
 ---
 
@@ -27,71 +24,71 @@ Using Word2Vec, the model can:
 | Technology | Purpose |
 |---|---|
 | Python | Programming Language |
-| Gensim | Word2Vec Model |
-| NLTK | Text Processing |
-| Pandas | Data Handling |
+| Gensim | Word2Vec Implementation |
+| NLTK | Text Preprocessing |
 | NumPy | Numerical Operations |
+| Pandas | Data Handling |
 | Scikit-learn | PCA Dimensionality Reduction |
-| Plotly | Interactive Visualization |
-| KaggleHub | Dataset Downloading |
-| Jupyter Notebook | Development Environment |
+| Plotly | 3D Visualization |
+| KaggleHub | Dataset Download |
 
 ---
 
 # 📂 Dataset
 
-Dataset Used:  
+Dataset Used:
+
 **Game of Thrones Books Dataset**
 
-The dataset contains textual content from the Game of Thrones novels.
+The dataset is downloaded directly using KaggleHub.
 
 ---
 
 # ⚙️ Workflow
 
-## 1️⃣ Data Collection
-- Dataset downloaded using KaggleHub
+## 1️⃣ Dataset Loading
+
+The Game of Thrones dataset is downloaded and loaded into the notebook.
+
+```python
+import kagglehub
+
+data = kagglehub.dataset_download("khulasasndh/game-of-thrones-books")
+```
+
+---
 
 ## 2️⃣ Text Preprocessing
-The text is cleaned and processed using:
-- Sentence tokenization
-- Word tokenization
-- Lowercase conversion
-- Removal of unwanted symbols
-- Stopword handling
+
+The text data is preprocessed using:
+
+- Sentence Tokenization
+- Word Tokenization
+- Lowercase Conversion
+- Text Cleaning
+- Stopword Handling
 - `simple_preprocess()` from Gensim
 
-## 3️⃣ Model Training
-A custom Word2Vec model is trained on the processed text data.
+---
 
-## 4️⃣ Word Analysis
-The trained model is used for:
-- Similar word detection
-- Word similarity checking
-- Odd-word identification
-- Word vector extraction
+## 3️⃣ Word2Vec Model Training
 
-## 5️⃣ Visualization
-High-dimensional vectors are reduced to 3D using PCA and visualized using Plotly.
+The Word2Vec model is trained using:
+
+```python
+model = gensim.models.Word2Vec(
+    window=10,
+    min_count=2
+)
+```
+
+Vocabulary is built and the model is trained on the processed text.
 
 ---
 
-# 🧠 Word2Vec Concepts Used
+## 4️⃣ NLP Operations
 
-## ✅ CBOW (Continuous Bag of Words)
-Predicts a target word using surrounding context words.
-
-## ✅ Skip-Gram
-Predicts surrounding words using a target word.
-
-## ✅ Word Embeddings
-Converts words into meaningful dense vectors.
-
----
-
-# 📊 Example Operations
-
-## Find Similar Words
+### ✅ Find Similar Words
 
 ```python
 model.wv.most_similar('daenerys')
@@ -99,38 +96,50 @@ model.wv.most_similar('daenerys')
 
 ---
 
-## Calculate Similarity Between Characters
+### ✅ Detect Odd Word
 
 ```python
-model.wv.similarity('arya', 'sansa')
+model.wv.doesnt_match(['jon','rikon','robb','arya','sansa','bran'])
 ```
 
 ---
 
-## Find Odd Word
+### ✅ Calculate Similarity
 
 ```python
-model.wv.doesnt_match(['jon', 'arya', 'bran', 'dragon'])
+model.wv.similarity('arya','sansa')
 ```
 
 ---
 
-## Access Word Vector
+### ✅ Access Word Vectors
 
 ```python
-model.wv['jon']
+model.wv['king']
 ```
 
 ---
 
-# 📈 Visualization
+# 📊 Visualization
 
-The project visualizes word embeddings using:
+The project uses:
 
 - PCA (Principal Component Analysis)
 - Plotly 3D Scatter Plot
 
-This helps in understanding how semantically related words cluster together.
+to visualize Word2Vec embeddings in 3D space.
+
+```python
+fig = px.scatter_3d(
+    X[200:300],
+    x=0,
+    y=1,
+    z=2,
+    color=y[200:300]
+)
+```
+
+This helps understand semantic clustering between related words.
 
 ---
 
@@ -155,7 +164,7 @@ cd NLP/Word2Vec
 ## Install Dependencies
 
 ```bash
-pip install numpy pandas nltk gensim scikit-learn plotly kagglehub
+pip install numpy pandas gensim nltk scikit-learn plotly kagglehub
 ```
 
 ---
@@ -174,32 +183,30 @@ Open:
 game_of_thrones_word2vec.ipynb
 ```
 
-Run all cells sequentially.
+Run all notebook cells sequentially.
 
 ---
 
-# 📚 Learning Outcomes
+# 📚 Concepts Covered
 
-After completing this project, you will understand:
-
-- NLP preprocessing pipeline
-- Word2Vec algorithm
-- Word embeddings
-- Semantic similarity
-- Vector representation of text
-- PCA dimensionality reduction
-- NLP visualization techniques
+- Natural Language Processing (NLP)
+- Text Preprocessing
+- Word Embeddings
+- Word2Vec
+- Semantic Similarity
+- Vector Representation
+- PCA
+- Data Visualization
 
 ---
 
 # 🔮 Future Improvements
 
 - Add TSNE visualization
-- Train on larger NLP datasets
+- Compare CBOW and Skip-Gram
 - Add FastText implementation
-- Add Glove embeddings
-- Create a web-based NLP visualizer
-- Compare CBOW vs Skip-Gram performance
+- Train on larger datasets
+- Build interactive NLP visualization dashboard
 
 ---
 
@@ -219,10 +226,10 @@ Word2Vec/
 
 ## Sudarshan Ahire
 
-Computer Engineering Student | AI/ML Enthusiast | NLP Learner
+Computer Engineering Student | AI/ML & NLP Enthusiast
 
 ---
 
 # ⭐ Support
 
-If you found this project useful, consider giving this repository a ⭐ on GitHub.
+If you found this project useful, consider giving it a ⭐ on GitHub.
