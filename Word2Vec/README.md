@@ -1,151 +1,228 @@
-# Game of Thrones Word2Vec Analysis
+# Word2Vec using Game of Thrones Dataset ⚔️
 
-A Natural Language Processing (NLP) project that trains a **Word2Vec model** on the *Game of Thrones* book dataset to learn semantic relationships between characters, locations, and important terms from the series.
+This project demonstrates the implementation of the **Word2Vec** algorithm using text data from the **Game of Thrones** book series.  
+The model learns semantic relationships between words, characters, and locations by analyzing the context in which words appear.
+
+The project also includes preprocessing, similarity analysis, vector extraction, and 3D visualization of word embeddings.
 
 ---
 
-# 📌 Project Overview
+# 📌 Project Objective
 
-This project uses the **Word2Vec algorithm** from the `gensim` library to analyze text data from the *Game of Thrones* books.
+The main objective of this project is to understand how **Word Embeddings** work in Natural Language Processing (NLP).
 
-The model learns contextual meaning of words and can:
+Using Word2Vec, the model can:
 
-- Find similar characters or words
-- Measure similarity between characters
-- Detect odd words from a list
-- Generate vector embeddings
+- Learn relationships between words
+- Identify similar characters
+- Measure semantic similarity
+- Detect unrelated words
+- Convert words into dense numerical vectors
 - Visualize embeddings in 3D space
 
 ---
 
 # 🚀 Technologies Used
 
-- Python
-- NumPy
-- Pandas
-- Gensim
-- NLTK
-- Scikit-learn
-- Plotly
-- KaggleHub
-- Jupyter Notebook
+| Technology | Purpose |
+|---|---|
+| Python | Programming Language |
+| Gensim | Word2Vec Model |
+| NLTK | Text Processing |
+| Pandas | Data Handling |
+| NumPy | Numerical Operations |
+| Scikit-learn | PCA Dimensionality Reduction |
+| Plotly | Interactive Visualization |
+| KaggleHub | Dataset Downloading |
+| Jupyter Notebook | Development Environment |
 
 ---
 
 # 📂 Dataset
 
-Dataset: **Game of Thrones Books Dataset**
+Dataset Used:  
+**Game of Thrones Books Dataset**
 
-Source: Kaggle
+The dataset contains textual content from the Game of Thrones novels.
 
-The dataset is downloaded dynamically using:
+---
+
+# ⚙️ Workflow
+
+## 1️⃣ Data Collection
+- Dataset downloaded using KaggleHub
+
+## 2️⃣ Text Preprocessing
+The text is cleaned and processed using:
+- Sentence tokenization
+- Word tokenization
+- Lowercase conversion
+- Removal of unwanted symbols
+- Stopword handling
+- `simple_preprocess()` from Gensim
+
+## 3️⃣ Model Training
+A custom Word2Vec model is trained on the processed text data.
+
+## 4️⃣ Word Analysis
+The trained model is used for:
+- Similar word detection
+- Word similarity checking
+- Odd-word identification
+- Word vector extraction
+
+## 5️⃣ Visualization
+High-dimensional vectors are reduced to 3D using PCA and visualized using Plotly.
+
+---
+
+# 🧠 Word2Vec Concepts Used
+
+## ✅ CBOW (Continuous Bag of Words)
+Predicts a target word using surrounding context words.
+
+## ✅ Skip-Gram
+Predicts surrounding words using a target word.
+
+## ✅ Word Embeddings
+Converts words into meaningful dense vectors.
+
+---
+
+# 📊 Example Operations
+
+## Find Similar Words
 
 ```python
-import kagglehub 
-
-
-⚙️ Features
-✅ Text Preprocessing
-Sentence tokenization
-Word tokenization
-Lowercase conversion
-Stopword handling
-Text cleaning using simple_preprocess
-
-
-✅ Word2Vec Model Training
-
-The project trains a custom Word2Vec model using:
-
-Word2Vec(sentences=processed_sentences,
-         vector_size=100,
-         window=5,
-         min_count=2,
-         workers=4)
-
-
-✅ NLP Operations
-Find Similar Words
 model.wv.most_similar('daenerys')
+```
 
-Check Similarity Between Words
+---
+
+## Calculate Similarity Between Characters
+
+```python
 model.wv.similarity('arya', 'sansa')
+```
 
-Detect Odd Word
+---
+
+## Find Odd Word
+
+```python
 model.wv.doesnt_match(['jon', 'arya', 'bran', 'dragon'])
+```
 
-Access Word Vectors
+---
+
+## Access Word Vector
+
+```python
 model.wv['jon']
+```
 
+---
 
-📊 Visualization
+# 📈 Visualization
 
-The project uses:
+The project visualizes word embeddings using:
 
-PCA (Principal Component Analysis)
-Plotly 3D Scatter Plot
+- PCA (Principal Component Analysis)
+- Plotly 3D Scatter Plot
 
-to visualize high-dimensional word embeddings in 3D space.
+This helps in understanding how semantically related words cluster together.
 
-This helps understand semantic clustering of characters and terms.
+---
 
+# 🛠️ Installation
 
+## Clone Repository
 
-🛠️ Installation
-Clone Repository
-git clone https://github.com/your-username/game-of-thrones-word2vec.git
-Install Dependencies
-pip install numpy pandas gensim nltk scikit-learn plotly kagglehub
+```bash
+git clone https://github.com/SudarshanAhire/NLP.git
+```
 
+---
 
-▶️ Run the Project
+## Move to Project Folder
+
+```bash
+cd NLP/Word2Vec
+```
+
+---
+
+## Install Dependencies
+
+```bash
+pip install numpy pandas nltk gensim scikit-learn plotly kagglehub
+```
+
+---
+
+# ▶️ Run the Project
 
 Start Jupyter Notebook:
 
+```bash
 jupyter notebook
+```
 
 Open:
 
+```bash
 game_of_thrones_word2vec.ipynb
+```
 
-Run all cells to train the model and visualize embeddings.
+Run all cells sequentially.
 
+---
 
-📈 Output Examples
-Similarity scores between characters
-Word relationship analysis
-Semantic clustering visualization
-Interactive 3D embedding graph
+# 📚 Learning Outcomes
 
+After completing this project, you will understand:
 
+- NLP preprocessing pipeline
+- Word2Vec algorithm
+- Word embeddings
+- Semantic similarity
+- Vector representation of text
+- PCA dimensionality reduction
+- NLP visualization techniques
 
-📚 Learning Outcomes
+---
 
-This project helps understand:
+# 🔮 Future Improvements
 
-Natural Language Processing (NLP)
-Word Embeddings
-Word2Vec Algorithm
-Text preprocessing techniques
-Semantic similarity
-Dimensionality reduction using PCA
-Data visualization
+- Add TSNE visualization
+- Train on larger NLP datasets
+- Add FastText implementation
+- Add Glove embeddings
+- Create a web-based NLP visualizer
+- Compare CBOW vs Skip-Gram performance
 
+---
 
+# 📁 Project Structure
 
-🔮 Future Improvements
-Add TSNE visualization
-Use larger fantasy datasets
-Build character relationship networks
-Create a web application
-Add sentiment analysis
+```bash
+Word2Vec/
+│
+├── game_of_thrones_word2vec.ipynb
+├── README.md
+└── dataset/
+```
 
+---
 
-👨‍💻 Author
+# 👨‍💻 Author
 
-Sudarshan Ahire
+## Sudarshan Ahire
 
+Computer Engineering Student | AI/ML Enthusiast | NLP Learner
 
-⭐ Support
+---
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+# ⭐ Support
+
+If you found this project useful, consider giving this repository a ⭐ on GitHub.
